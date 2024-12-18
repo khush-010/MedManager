@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/dashboard.css" />
+    
+
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <title>Billing</title>
+    <style>
+      /* Additional styling for layout */
+      .dashboard-container {
+        display: flex;
+      }
+
+      .dashboard-container .sidebar {
+        width: 250px; /* Adjust based on your sidebar width */
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 80rem;
+        background-color: #1a1a1a;
+        padding-top: 20px;
+      }
+
+      .dashboard-container .content {
+        margin-left: 250px; /* Adjust based on your sidebar width */
+        padding: 20px;
+        width: calc(100% - 250px); /* Adjust width based on sidebar width */
+      }
+
+      .content .container {
+        margin-top: 20px;
+      }
+
+      .table-responsive {
+        margin-top: 20px;
+      }
+
+    </style>
+  </head>
+  <body>
+    <div class="dashboard-container">
+      <div class="sidebar">
+        <!-- Sidebar content -->
+        <%- include('partials/dashboardNav', {activePage: 'sales'}) %>
+      </div>
+      <div class="content">
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover table-striped">
+                <thead class="table-dark">
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Item Name</th>
+                    <th scope="col">Total Quantity Sold</th>
+                    <th scope="col">Total Revenue</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% if (sales && sales.length > 0) { %>
+                    <% sales.forEach((sale, index) => { %>
+                      <tr>
+                        <td><%= index + 1 %></td>
+                        <td><%= sale._id %></td>
+                        <td><%= sale.totalQty %></td>
+                        <td><%= sale.totalAmount %></td>
+                      </tr>
+                    <% }) %>
+                  <% } else { %>
+                    <tr>
+                      <td colspan="5" class="text-center">No sales data available.</td>
+                    </tr>
+                  <% } %>
+                </tbody>
+              </table>
+          
+        </div>
+      </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  </body>
+</html>

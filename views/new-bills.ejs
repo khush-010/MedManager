@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>New Bill</title>
+    <link rel="stylesheet" href="/css/dashboard.css" />
+    <link rel="stylesheet" href="/css/new-bill.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue",
+          sans-serif;
+        background-color: #f4f4f4;
+      }
+
+      .container {
+        padding: 20px;
+      }
+
+      .card {
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      table {
+        margin-top: 10px;
+        width: 100%;
+      }
+
+      thead {
+        background-color: #2a2a2a;
+        color: #fff;
+      }
+
+      tbody tr:nth-child(even) {
+        background-color: #f9f9f9;
+      }
+
+      .btn-teal {
+        background-color: #00bfff;
+        color: white;
+      }
+
+      .btn-teal:hover {
+        background-color: #007bbf;
+      }
+      .dashboard-container {
+        display: flex;
+      }
+
+      .dashboard-container .sidebar {
+        width: 250px;
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 80rem;
+        background-color: #1a1a1a;
+        padding-top: 20px;
+      }
+
+      .dashboard-container .content {
+        margin-left: 250px;
+        padding: 20px;
+        width: 100%;
+      }
+
+      .content .container {
+        margin-top: 20px;
+      }
+
+      #suggestionsList {
+        max-height: 200px;
+        overflow-y: auto;
+        display: none;
+        position: absolute;
+        background-color: white;
+        border: 1px solid #ccc;
+        width: 100%;
+        z-index: 1000;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="dashboard-container">
+      
+      <div class="sidebar">
+        <!-- Sidebar content -->
+        <%- include('partials/dashboardNav', {activePage: 'new-bills'}) %>
+      </div>
+      <div class="content">
+        <h1 class="mb-4">New Bill</h1>
+        <div class="customer-details">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="card p-3">
+                <h2>Customer Details</h2>
+                <form id="customerDetailsForm" action="" method="post">
+                  <div class="mb-3">
+                    <input
+                      type="text"
+                      id="customerName"
+                      class="form-control"
+                      placeholder="Customer Name"
+                    />
+                  </div>
+                  <div class="mb-3">
+                    <input
+                      type="number"
+                      id="customerContact"
+                      class="form-control"
+                      placeholder="Customer Phone"
+                      maxlength="10"
+                      oninput="validatePhone(this)"
+                    />
+                  </div>
+                </form>
+              </div>
+            </div>
+            
+          </div>
+        </div>
+        <div class="row">
+          <!-- Current Bill Section -->
+          <div class="col-md-6">
+            <div class="card p-3">
+              <h2>Current Bill</h2>
+              <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th id="itemType-bill">Item Type</th>
+                    <th id="itemName-bill">Item Name</th>
+                    <th id="itemQty-bill">Quantity</th>
+                    <th id="itemPrice">Price</th>
+                    <th>Total</th>
+                  </tr>
+                </thead>
+                <tbody id="billTableBody">
+                  <!-- Items will be added here -->
+                </tbody>
+              </table>
+              <div class="card p-3">
+                <h3 id="total-bill">Total: <span >0</span></h3>
+              </div>
+            </div>
+          </div>
+
+          <!-- Add Item Section -->
+          <div class="col-md-6">
+            <div class="card p-3">
+              <h2>Add Item</h2>
+              <form id="addItemForm-bill" action="" method="post">
+                <div class="mb-3">
+                  <input
+                    type="text"
+                    id="itemName"
+                    class="form-control"
+                    placeholder="Item Name"
+                  />
+                  <ul id="suggestionsList" class="list-group" style="position: absolute; z-index: 1000;"></ul>  
+                </div>
+                <div class="mb-3">
+                  <input
+                    type="number"
+                    id="itemQty"
+                    class="form-control"
+                    placeholder="Quantity"
+                  />
+                </div>
+                <div class="mb-3">
+                  <input
+                  type="number"
+                  class="form-control"
+                  id="itemPrice-bill"
+                  step="0.01"
+                  placeholder="Price"
+                  required
+                  />
+                </div>
+                <div>
+                  <h3>
+                    Available Stock: <span id="availableStock">0</span>
+                  </h3>
+                  <h3 style="display: none;">
+                    <span id="itemType">Item Type</span>
+                  </h3>
+                </div>
+              </form>
+              <button onclick="addItem()" class="btn btn-teal w-100">
+                Add
+              </button>
+            </div>
+          </div>
+          <button class="form-control btn btn-success" id="print-bill">Print Bill</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>        
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/new-bill.js"></script>
+  </body>
+</html>

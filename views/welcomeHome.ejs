@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to MedManager</title>
+    <link rel="stylesheet" href="css/nav.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+   
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <%- include ('partials/welcomeNav') %>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container">
+            <h1>Welcome to MedManager</h1>
+            <p>Your one-stop solution for efficient medical store management.</p>
+            <a href="/login" class="btn btn-light btn-lg fw-bold">Start Managing Now</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="py-5">
+        <div class="container text-center">
+            <h2 class="fw-bold mb-4">What is MedManager?</h2>
+            <p class="lead">
+                MedManager is a powerful platform that helps medical stores manage inventory, billing, and customer records seamlessly.
+                Designed for simplicity and efficiency, MedManager ensures smooth day-to-day operations.
+            </p>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="bg-light py-5">
+        <div class="container">
+            <h2 class="text-center fw-bold mb-5">Key Features</h2>
+            <div class="row text-center">
+                <div class="col-md-4 mb-4">
+                    <div class="card feature-card p-4">
+                        <h5>Inventory Management</h5>
+                        <p>Track and manage medicines, pricing, and expiry details efficiently.</p>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card feature-card p-4">
+                        <h5>Billing Management</h5>
+                        <p>Create invoices, store records, and handle pending payments with ease.</p>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card feature-card p-4">
+                        <h5>Sales Record</h5>
+                        <p>Maintain records of sales.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us Section -->
+    <section class="py-5">
+        <div class="container text-center">
+            <h2 class="fw-bold mb-4">Why Choose MedManager?</h2>
+            <div class="row">
+                <div class="col-md-3 mb-3">
+                    <p><strong>User-Friendly Interface</strong></p>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <p><strong>Fast & Reliable</strong></p>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <p><strong>Data Security</strong></p>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <p><strong>24/7 Support</strong></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p class="mb-1">&copy; 2024 MedManager. All Rights Reserved.</p>
+            <p>
+                <a href="/about">About Us</a> | <a href="/contact-us">Contact</a> | <a href="/privacy-policy">Privacy Policy</a>
+            </p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

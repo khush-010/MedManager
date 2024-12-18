@@ -1,0 +1,22 @@
+<nav class="sidebar">
+    <div class="sidebar-header">
+        <h2>MedManager</h2>
+    </div>
+    <ul class="sidebar-nav">
+        <li><a href="/dashboard" class="<%= activePage === 'dashboard' ? 'active' : '' %>">Dashboard</a></li>
+        <li><a href="/inventory" class="<%= activePage === 'inventory' ? 'active' : '' %>">Inventory</a></li>
+        <li class="has-submenu">
+            <a href="#" id="billing-menu" class="<%= activePage === 'billing' ? 'active' : '' %>">Billing</a>
+            <ul class="sub-menu" id="billing-submenu">
+                <li><a href="/billing/new" class="<%= activePage === 'new-bills' ? 'active' : '' %>">Make New Bill</a></li>
+                <li><a href="/billing/old" class="<%= activePage === 'old-bills' ? 'active' : '' %>">Show Old Bills</a></li>
+            </ul>
+        </li>
+        <li><a href="/sales" class="<%= activePage === 'sales' ? 'active' : '' %>">Sales</a></li>
+        <li><a href="/stock-alert" class="<%= activePage === 'stock-alert' ? 'active' : '' %>">Stock Alert</a></li>
+        
+        <li><a href="/logout">Logout</a></li>
+    </ul>
+</nav>
+
+

@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/inventory.css" />
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/dashboard.css" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <title>Inventory Management</title>
+    <style>
+      /* Additional styling for layout */
+      .dashboard-container {
+        display: flex;
+      }
+
+      .dashboard-container .sidebar {
+        width: 250px; /* Adjust based on your sidebar width */
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 80rem;
+        background-color: #1a1a1a;
+        padding-top: 20px;
+      }
+
+      .dashboard-container .content {
+        margin-left: 250px; /* Adjust based on your sidebar width */
+        padding: 20px;
+        width: 100%;
+      }
+
+      .content .container {
+        margin-top: 20px;
+      }
+
+      .btn-info, .btn-danger {
+        margin: 0 3px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="dashboard-container">
+        <div class="sidebar">
+            <!-- Sidebar content -->
+            <%- include('partials/dashboardNav', {activePage: 'inventory'}) %>
+        </div>
+        <div class="content">
+            <div class="container">
+                <div class="text-center">
+                    <h2 class="mb-4">Inventory Management</h2>
+                    <!-- <p class="text-muted">
+                      Manage your inventory effectively. Add, update, or remove items as needed.
+                    </p> -->
+                </div>
+
+                <div class="text-right mb-4">
+                    <button class="btn btn-primary" data-toggle="modal" data-target="#addItemModal">Add New Item</button>
+                </div>
+
+                <div class="table-responsive">
+                    <table class="table table-bordered table-striped table-hover">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th scope="col">No.</th>
+                                <th scope="col">Product Name</th>
+                                <th scope="col">Price</th>
+                                <th scope="col">Total Quantity</th>
+                                <th scope="col">Expiry Date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                          <% inventoryItems.forEach(function(item, index) { %>
+                              <tr>
+                                  <th scope="row"><%= index + 1 %></th>
+                                  <td><%= item.type_of_prod %>. <%= item.name %></td>
+                                  <td><%= item.price %></td>
+                                  <td><%= item.total_qty %></td>
+                                  <td><%= item.exp_date %></td>
+                              </tr>
+                          <% }); %>
+                      </tbody>
+                      
+                        
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for adding new item -->
+    <div
+      class="modal fade"
+      id="addItemModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="addItemModalLabel"
+      aria-hidden="true"
+    >
+    <form id="addItemForm" action="/inventory" method="post">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="addItemModalLabel">
+              Add New Inventory Item
+            </h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="form-group">
+                <label for="itemName">Product Name</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="itemName"
+                  name="name"
+                  required
+                  autocomplete="off"
+                />
+                <ul id="suggestionsList" class="list-group"></ul> <!-- Suggestions List -->
+            </div>            
+              <div class="form-group">
+                <label for="itemType">Type of Product</label>
+                <select class="form-control" id="itemType" name="type_of_prod" required>
+                    <option value="" disabled selected>Select a product type</option> <!-- Placeholder option -->
+                    <option value="TAB">TAB</option>
+                    <option value="CAP">CAP</option>
+                    <option value="CREAM">CREAM</option>
+                    <option value="SYRUP">SYRUP</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="itemPrice">Price</label>
+                <input
+                  type="number"
+                  class="form-control"
+                  id="itemPrice"
+                  step="0.01"
+                  name="price"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label for="itemQty">Quantity</label>
+                <input
+                  type="number"
+                  class="form-control"
+                  id="itemQty"
+                  name="qty"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label for="itemItemsPerQty">Items Per Quantity</label>
+                <input
+                  type="number"
+                  class="form-control"
+                  id="itemItemsPerQty"
+                  name="items_per_qty"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label for="itemExpDate">Expiry Date</label>
+                <input
+                  type="month"
+                  class="form-control"
+                  id="itemExpDate"
+                  name="exp_date"
+                  required
+                />
+              </div>
+              <button type="submit" class="btn btn-primary">Add Item</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    </form>
+    
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"></script>
+    <script src="js/inventory.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  </body>
+  
+</html>

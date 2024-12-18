@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="/css/login_signup.css">
+</head>
+<body>
+    <!-- register form -->
+    <form id="register-form" action="/signup" method="post" class="form active">
+        <p class="title">Sign Up</p>
+        <p class="message">
+            Signup now and get full access to our app.
+        </p>
+        <div class="flex">
+            <label>
+                <input type="text" class="input" name="first_name" placeholder="" required>
+                <span>First Name</span>
+            </label>
+            <label>
+                <input type="text" class="input" name="last_name" placeholder="" required>
+                <span>Last Name</span>
+            </label>
+        </div>
+
+        <label>
+            <input type="email" class="input" name="email" placeholder="" required>
+            <span>Email</span>
+        </label>
+
+        <label>
+            <input type="password" name="password" class="input" placeholder="" required>
+            <span>Password</span>
+        </label>
+
+        <label>
+            <input type="password" name="confirm_password" class="input" placeholder="" required>
+            <span>Confirm Password</span>
+        </label>
+        <button class="submit">Sign Up</button>
+        <p class="signin-signup">
+            Already have an account?
+            <a href="/login">Login</a>
+        </p>
+        <% if (error && error.length > 0) { %>
+            <ul class="flash-messages warning">
+                <% error.forEach(function(message) { %>
+                    <li><%= message %></li>
+                <% }) %>
+            </ul>
+        <% } %>
+    </form>
+    
+</body>
+</html>

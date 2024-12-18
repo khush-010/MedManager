@@ -1,0 +1,239 @@
+/* General Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #e9ecef;
+    color: #343a40;
+    margin: 0;
+    padding: 0;
+}
+
+h2 {
+    color: #00bfff;
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 20px;
+}
+
+/* Table Styles */
+.table-responsive {
+    margin-top: 20px;
+    overflow-x: auto;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: azure;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    animation: fadeIn 1s ease-in-out;
+}
+
+.table th, .table td {
+    vertical-align: middle;
+    padding: 20px;
+    font-size: 1.125rem;
+    border-bottom: 1px solid #dee2e6;
+    text-align: center;
+    white-space: nowrap;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+/* Header Styles */
+.thead-dark th {
+    background-color: #495057;
+    color: #fff;
+    text-align: left;
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+
+/* Button Styles */
+.btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+    color: #fff;
+    padding: 12px 20px;
+    font-size: 1.125rem;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px);
+}
+
+.btn-info, .btn-danger {
+    border-radius: 5px;
+    padding: 12px 20px;
+    font-size: 1rem;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.btn-info:hover {
+    background-color: #138496;
+    transform: scale(1.05);
+}
+
+.btn-danger:hover {
+    background-color: #c82333;
+    transform: scale(1.05);
+}
+
+/* Modal Styles */
+.modal-header {
+    background-color: #007bff;
+    color: #fff;
+    padding: 15px;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.modal-title {
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+.modal-body .form-control {
+    border-radius: 5px;
+    padding: 7px;
+    font-size: 1rem;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(0, 123, 255, 0.4); }
+    70% { box-shadow: 0 0 0 10px rgba(0, 123, 255, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(0, 123, 255, 0); }
+}
+
+@keyframes highlightRow {
+    0% { background-color: #c3e6cb; }
+    50% { background-color: #d4edda; }
+    100% { background-color: transparent; }
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    h2 {
+        font-size: 2rem;
+    }
+
+    .table-responsive {
+        margin-top: 15px;
+    }
+
+    .btn-primary {
+        width: 100%;
+    }
+
+    .table th, .table td {
+        font-size: 1rem;
+        padding: 15px;
+    }
+}
+
+@media (max-width: 576px) {
+    .btn-primary {
+        font-size: 1rem;
+        padding: 10px;
+    }
+
+    .table th, .table td {
+        font-size: 0.875rem;
+    }
+
+    .modal-dialog {
+        margin: 20px;
+    }
+
+    .modal-header {
+        padding: 10px;
+    }
+
+    .modal-body {
+        padding: 15px;
+    }
+}
+
+/* General Form Control Styles */
+.form-control {
+    display: block;
+    width: 100%; /* Full width */
+    height: calc(2.25rem + 2px); /* Increased height for better touch targets */
+    padding: 7px 15px; /* Add padding for input */
+    font-size: 1rem; /* Base font size */
+    line-height: 1.5; /* Line height for spacing */
+    color: #495057; /* Text color */
+    background-color: #fff; /* Background color */
+    background-clip: padding-box;
+    border: 1px solid #ced4da; /* Border color */
+    border-radius: 0.25rem; /* Rounded corners */
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out; /* Transition for hover/focus */
+}
+
+/* Focus State for Form Controls */
+.form-control:focus {
+    color: #495057; /* Text color on focus */
+    background-color: #fff; /* Background color on focus */
+    border-color: #80bdff; /* Border color on focus */
+    outline: 0; /* Remove default outline */
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25); /* Shadow on focus */
+}
+
+/* Dropdown Specific Styles */
+select.form-control {
+    appearance: none; /* Remove default arrow */
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 16 16"><path d="M4 6l4 4 4-4H4z"/></svg>'); /* Custom arrow */
+    background-repeat: no-repeat; /* No repeat for background */
+    background-position: right 10px center; /* Position the custom arrow */
+    background-size: 16px; /* Size of the custom arrow */
+    padding-right: 40px; /* Space for the custom arrow */
+}
+
+/* Adjustments for Dropdown on Hover */
+select.form-control:hover {
+    border-color: #80bdff; /* Border color on hover */
+}
+
+/* Adjustments for Small Screens */
+@media (max-width: 768px) {
+    .form-control {
+        font-size: 0.875rem; /* Slightly smaller font size */
+        padding: 10px; /* Adjust padding */
+    }
+}
+
+#suggestionsList {
+    position: absolute;
+    z-index: 1000;
+    width: 100%;
+    max-height: 200px;
+    overflow-y: auto;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    display: none; /* Initially hidden */
+}
+
+#suggestionsList li {
+    padding: 10px;
+    cursor: pointer;
+}
+
+#suggestionsList li:hover {
+    background-color: #f1f1f1;
+}
