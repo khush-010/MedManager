@@ -30,7 +30,19 @@
                 </div>
                 <div class="card">
                     <h3>Sales</h3>
-                    <p>View sales data and charts.</p>
+                    <p>Total Products Sold : <%= totalBillItems %></p>
+                    <% if(totalTab>0){ %>
+                        <p>Total Tablets : <%= totalTab %></p>
+                    <% } %>
+                    <% if(totalCap>0){ %>
+                        <p>Total Capsules : <%= totalCap %></p>
+                    <% } %>
+                    <% if(totalSyrup>0){ %>
+                        <p>Total Syrup : <%= totalSyrup %></p>
+                    <% } %>
+                    <% if(totalCream>0){ %>
+                        <p>Total Cream : <%= totalCream %></p>
+                    <% } %>
                 </div>
             </section>
         </main>

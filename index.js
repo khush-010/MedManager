@@ -44,6 +44,7 @@ const dashboardRoutes = require('./routes/dashboardRoutes')
 const inventoryRoutes = require('./routes/inventoryRoutes')
 const billingRoutes = require('./routes/billingRoutes')
 const salesRoutes = require('./routes/salesRoutes');
+const stockAlertRoutes = require('./routes/stockAlertRoutes');
 
 app.use('/',welcomeRoutes)
 app.use('/',authRoutes)
@@ -51,6 +52,7 @@ app.use('/',restrictToLoggedInUserOnly,dashboardRoutes)
 app.use('/',restrictToLoggedInUserOnly,inventoryRoutes)
 app.use('/',restrictToLoggedInUserOnly,billingRoutes) 
 app.use('/',restrictToLoggedInUserOnly,salesRoutes)
+app.use('/',restrictToLoggedInUserOnly,stockAlertRoutes)
 
 app.listen(port,()=>{
     console.log("SERVER STARTED!!!!");
